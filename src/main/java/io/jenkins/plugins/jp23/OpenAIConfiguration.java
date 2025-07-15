@@ -8,10 +8,21 @@ import org.kohsuke.stapler.StaplerRequest;
 @Extension
 public class OpenAIConfiguration extends GlobalConfiguration {
 
-    private String openaiEndpoint;
+    private String openaiEndpoint = "https://api.openai.com/v1/chat/completions";
+    private String openaiModel = "gpt-3.5-turbo";
+    private String openaiApiKeyUrl;
+
+    public String getOpenaiApiKeyUrl() {
+        return openaiApiKeyUrl;
+    }
+
+    public void setOpenaiApiKeyUrl(String openaiApiKeyUrl) {
+        this.openaiApiKeyUrl = openaiApiKeyUrl;
+        save();
+    }
 
     public OpenAIConfiguration() {
-        load(); // טוען מהקונפיגורציה
+        load(); // טוען מה דיסק
     }
 
     public String getOpenaiEndpoint() {
@@ -20,7 +31,16 @@ public class OpenAIConfiguration extends GlobalConfiguration {
 
     public void setOpenaiEndpoint(String openaiEndpoint) {
         this.openaiEndpoint = openaiEndpoint;
-        save(); // שומר לקובץ config.xml
+        save();
+    }
+
+    public String getOpenaiModel() {
+        return openaiModel;
+    }
+
+    public void setOpenaiModel(String openaiModel) {
+        this.openaiModel = openaiModel;
+        save();
     }
 
     @Override

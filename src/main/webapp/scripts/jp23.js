@@ -1,18 +1,18 @@
-let OPENAI_ENDPOINT = "https://api.openai.com/v1/chat/completions"; // fallback default
+let OPENAI_ENDPOINT = "";
+let OPENAI_API_KEY = "";
+let OPENAI_MODEL = "gpt-3.5-turbo";
 
-fetch("/jenkins/jp23-settings/endpoint")
+fetch("/jenkins/jp23-settings/settings")
   .then(r => r.json())
   .then(data => {
-    if (data.endpoint) {
-      OPENAI_ENDPOINT = data.endpoint;
-      console.log("✅ Loaded OpenAI endpoint from config:", OPENAI_ENDPOINT);
-    }
+    OPENAI_ENDPOINT = data.endpoint;
+    OPENAI_API_KEY = data.apiKey;
+    OPENAI_MODEL = data.model || "gpt-3.5-turbo";
   });
 
 window.addEventListener('load', function () {
   console.log("JP23 Chatbot JS loaded!");
 
-  const OPENAI_API_KEY = "YOUR_OPENAI_API_KEY"; // ⬅️ החליפי בזהירות
 
   const chatButton = document.createElement("div");
   chatButton.innerHTML = "💬";
@@ -78,7 +78,7 @@ window.addEventListener('load', function () {
             "Authorization": `Bearer ${OPENAI_API_KEY}`
           },
           body: JSON.stringify({
-            model: "gpt-3.5-turbo",
+            model: OPENAI_MODEL,
             messages: [
               { role: "system", content: "You are a helpful Jenkins assistant." },
               { role: "user", content: msg }

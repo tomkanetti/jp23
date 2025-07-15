@@ -4,5 +4,11 @@
     <f:entry title="OpenAI API Endpoint" field="openaiEndpoint">
       <f:textbox />
     </f:entry>
+    <f:entry title="OpenAI Model" field="openaiModel">
+      <f:textbox />
+    </f:entry>
+    <f:entry title="API Key URL" field="openaiApiKeyUrl">
+      <f:textbox />
+    </f:entry>
   </f:section>
 </j:jelly>
