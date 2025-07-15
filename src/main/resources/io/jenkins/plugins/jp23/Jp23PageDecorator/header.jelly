@@ -1,0 +1,4 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core">
+  <script src="${rootURL}/plugin/jp23/scripts/jp23.js" type="text/javascript"/>
+</j:jelly>
